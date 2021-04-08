@@ -57,14 +57,15 @@ get_ranked <- function(act_id=current_act_id, start=0) {
   
   if(rq$status_code == 200) {
     rq_raw <- rq %>% httr::content() %>% jsonlite::fromJSON()
-    usethis::ui_done(paste0("Returning #", crayon::bold(start+1), " to #",
-                            crayon::bold(start+200), " player from a total of ",
-                            crayon::bold(format(rq_raw[["totalPlayers"]],
-                                   big.mark = ",", decimal.mark = ".")), " players"))
+    num_bold <- function(x) crayon::bold(format(x, big.mark = ",", decimal.mark = "."))
+    
+    usethis::ui_done(paste0("Returning #", num_bold(start+1), " to #",
+                            num_bold(start+200), " player from a total of ",
+                            num_bold(rq_raw[["totalPlayers"]]), " players"))
     
     return(tibble::as_tibble(rq_raw[["players"]]))
     
   } else { return(usethis::ui_oops(httr::http_status(rq$status_code)$message)) }
 }
 
-ranked <- get_ranked()
+ranked <- get_ranked(start = 4014)
