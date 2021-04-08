@@ -1,8 +1,7 @@
 
-# valorant-api
+# Valorant API R Wrapper
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of valorant-api is to ...
-
+Wrapper functions for Riot API to get VALORANT data. Will be a package in the future.
