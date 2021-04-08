@@ -25,7 +25,7 @@ get_player_id <- function(usertag) {
   request_url <- "https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/"
   
   user <- stringr::str_split(usertag, "#")[[1]][1]
-  tag <- user <- stringr::str_split(usertag, "#")[[1]][2]
+  tag <- stringr::str_split(usertag, "#")[[1]][2]
   
   rq <- httr::GET(paste0(request_url, user, "/", tag),
                   httr::add_headers(`X-Riot-Token` = Sys.getenv("VAL_API")))
